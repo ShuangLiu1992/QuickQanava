@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.1.0)
 project(GTpo)
 
 set (gtpo_header_files
-    src/gtpo/adjacent_behaviour.h
-    src/gtpo/adjacent_behaviour.hpp
+    #src/gtpo/adjacent_behaviour.h
+    #src/gtpo/adjacent_behaviour.hpp
     src/gtpo/behaviourable.h
     src/gtpo/behaviourable.hpp
     src/gtpo/behaviour.h
@@ -16,10 +16,10 @@ set (gtpo_header_files
     src/gtpo/graph.h
     src/gtpo/graph.hpp
     src/gtpo/graph_property.h
-    src/gtpo/group_behaviour.h
-    src/gtpo/group_behaviour.hpp
-    src/gtpo/group.h
-    src/gtpo/group.hpp
+    #src/gtpo/group_behaviour.h
+    #src/gtpo/group_behaviour.hpp
+    #src/gtpo/group.h
+    #src/gtpo/group.hpp
     src/gtpo/GTpo
     src/gtpo/GTpo.h
     src/gtpo/node_behaviour.h
