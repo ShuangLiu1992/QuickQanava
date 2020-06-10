@@ -38,8 +38,10 @@ set (qan_header_files
 	qanEdgeItem.h
 	qanGraphConfig.h
 	qanGraph.h
+	qanGraph.hpp
 	qanGraphView.h
 	qanGrid.h
+	qanLineGrid.h
 	qanGrid.h
 	qanGroup.h
 	qanGroupItem.h
