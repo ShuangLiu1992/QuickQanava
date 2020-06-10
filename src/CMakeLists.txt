@@ -66,7 +66,8 @@ set (qan_plugin_files
 set(CMAKE_AUTOMOC ON)
 qt5_wrap_cpp(qan_source_files, qan_header_files)
 set(CMAKE_AUTORCC ON)
-list(APPEND RESOURCES QuickQanava_plugin.qrc)
+list(APPEND RESOURCES QuickQanava_static.qrc)
+add_definitions(-DQUICKQANAVA_STATIC)
 
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:QT_QML_DEBUG>)
 
@@ -98,40 +99,3 @@ install(TARGETS QuickQanava
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 target_link_libraries(QuickQanava PUBLIC GTpo QuickContainers Qt5::Core Qt5::Gui Qt5::QuickControls2)
-
-
-# Configure QuickQanava QML module plugin #####################################
-set(PLUGIN_TARGET "quickqanavaplugin")
-add_library(${PLUGIN_TARGET} SHARED ${qan_plugin_files})
-target_link_libraries(${PLUGIN_TARGET} QuickQanava)
-
-# QML module deployment
-set(URI QuickQanava)
-string(REPLACE "." "/" TARGETPATH ${URI})
-if (NOT DEFINED QT_QMAKE_EXECUTABLE)
-    get_target_property (QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
-    if (NOT QT_QMAKE_EXECUTABLE)
-        message(FATAL_ERROR "Cannot find qmake")
-    endif()
-endif()
-execute_process(COMMAND ${QT_QMAKE_EXECUTABLE} -query QT_INSTALL_QML OUTPUT_VARIABLE QT_INSTALL_QML_RAW)
-string(STRIP ${QT_INSTALL_QML_RAW} QT_INSTALL_QML)
-set(DESTDIR "${QT_INSTALL_QML}/${TARGETPATH}")
-install(TARGETS ${PLUGIN_TARGET} DESTINATION ${DESTDIR})
-
-#message("QT_INSTALL_QML=" ${QT_INSTALL_QML})
-
-# Install qmldir file
-install(
-	FILES ${CMAKE_CURRENT_SOURCE_DIR}/qmldir_plugin
-	DESTINATION ${DESTDIR}
-	RENAME qmldir
-)
-
-# Install source QML files to ease debugging
-install(
-	DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-	DESTINATION ${DESTDIR}
-	FILES_MATCHING PATTERN "*.qml"
-)
-
