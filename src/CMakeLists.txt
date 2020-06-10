@@ -67,7 +67,6 @@ set(CMAKE_AUTOMOC ON)
 qt5_wrap_cpp(qan_source_files, qan_header_files)
 set(CMAKE_AUTORCC ON)
 list(APPEND RESOURCES QuickQanava_static.qrc)
-add_definitions(-DQUICKQANAVA_STATIC)
 
 set_property(DIRECTORY APPEND PROPERTY COMPILE_DEFINITIONS $<$<CONFIG:Debug>:QT_QML_DEBUG>)
 
@@ -78,6 +77,10 @@ target_include_directories(QuickQanava
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
         $<INSTALL_INTERFACE:include>
     )
+target_compile_definitions(QuickQanava PUBLIC 
+	$<BUILD_INTERFACE:QUICKQANAVA_STATIC>
+	$<INSTALL_INTERFACE:QUICKQANAVA_STATIC>
+)
 
 target_compile_features(QuickQanava
     PUBLIC

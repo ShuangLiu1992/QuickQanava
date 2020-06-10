@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.1.0)
 project(GTpo)
 
 set (gtpo_header_files
-    #src/gtpo/adjacent_behaviour.h
     #src/gtpo/adjacent_behaviour.hpp
     src/gtpo/behaviourable.h
     src/gtpo/behaviourable.hpp
